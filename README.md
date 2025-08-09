@@ -1,6 +1,6 @@
 # 📚 BookHive - Modern Library Management System
 
-![BookHive Banner](docs/assets/banner.png)  
+
 *A complete Flutter solution for digital library management*
 
 ## 🌟 Key Features
@@ -12,11 +12,6 @@
 - **Material Design 3** with dark/light mode
 - **API Rate Limiting** (Django backend)
 
-## 📱 Screenshots & Demo
-| ![Login](docs/screens/login.png) | ![Books](docs/screens/books.png) | ![Borrow](docs/screens/borrow.png) |
-|----------------------------------|----------------------------------|------------------------------------|
-
-▶️ [Watch Demo Video](https://youtu.be/demo-link)
 
 ## 🛠 Tech Stack
 | Layer            | Technology                      |
@@ -41,3 +36,4 @@
 git clone https://github.com/yourusername/bookhive.git
 cd bookhive
 flutter pub get
+
