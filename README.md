@@ -38,8 +38,23 @@ cd bookhive
 flutter pub get
 
 
-mkdir -p lib/app/{bindings,constants,data/{local,remote},modules/{auth/{controller,model,view},books/{controller,model,view},borrow/{controller,model,view},profile/{controller,model,view},admin/{controller,model,view}},routes,theme,widgets} lib/core/{extensions,utils,values}
+## 🏗 Project Structure
 
-touch lib/main.dart lib/app/{bindings/app_bindings.dart,constants/{storage_keys.dart,api_routes.dart,app_constants.dart},data/local/local_storage_service.dart,data/remote/{api_service.dart,auth_repository.dart,book_repository.dart,borrow_repository.dart},modules/auth/{controller/auth_controller.dart,model/auth_model.dart,view/{login_page.dart,register_page.dart}},modules/books/{controller/book_controller.dart,model/book_model.dart,view/books_page.dart},modules/borrow/{controller/borrow_controller.dart,model/borrow_model.dart,view/borrow_page.dart},modules/profile/{controller/profile_controller.dart,model/profile_model.dart,view/profile_page.dart},modules/admin/{controller/admin_controller.dart,model/admin_model.dart,view/admin_dashboard.dart},routes/app_pages.dart,theme/app_theme.dart,widgets/{main_drawer.dart,book_card.dart,loading_indicator.dart,error_widget.dart}} lib/core/{extensions/string_extensions.dart,utils/date_utils.dart,values/dimens.dart}
-
+lib/
+├── app/
+│ ├── bindings/ # Dependency injection
+│ ├── constants/ # App constants
+│ ├── data/ # Data layer
+│ │ ├── local/ # Hive/SharedPrefs
+│ │ └── remote/ # API services
+│ ├── modules/ # Feature modules
+│ │ ├── auth/ # Auth flows
+│ │ ├── books/ # Book management
+│ │ ├── borrow/ # Borrow system
+│ │ └── admin/ # Admin panel
+│ ├── routes/ # App navigation
+│ ├── theme/ # UI theming
+│ └── widgets/ # Shared components
+├── core/ # Utilities
+└── main.dart # Entry point
 
