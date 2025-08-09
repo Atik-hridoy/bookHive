@@ -38,7 +38,7 @@ cd bookhive
 flutter pub get
 
 
-## 🏗 Project Structure
+### 🏗 Project Structure
 
 lib/
 ├── app/
@@ -57,4 +57,5 @@ lib/
 │ └── widgets/ # Shared components
 ├── core/ # Utilities
 └── main.dart # Entry point
+
 
