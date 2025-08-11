@@ -39,18 +39,25 @@ class BorrowPage extends StatelessWidget {
   }
 
   Widget _buildActiveBorrows() {
+    if (controller.activeBorrows.isEmpty) {
+      return Center(
+        child: Text('No active borrowings'),
+      );
+    }
+    
     return ListView.builder(
       itemCount: controller.activeBorrows.length,
       itemBuilder: (context, index) {
         final borrow = controller.activeBorrows[index];
         return Card(
+          margin: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
           child: ListTile(
             title: Text(borrow.bookTitle),
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Borrowed: \${dateFormat.format(borrow.borrowDate)}'),
-                Text('Due: \${dateFormat.format(borrow.dueDate)}'),
+                Text('Borrowed: ${dateFormat.format(borrow.borrowDate)}'),
+                Text('Due: ${dateFormat.format(borrow.dueDate)}'),
                 if (borrow.isLate)
                   Text(
                     'Late!',
@@ -69,18 +76,26 @@ class BorrowPage extends StatelessWidget {
   }
 
   Widget _buildBorrowHistory() {
+    if (controller.borrowHistory.isEmpty) {
+      return Center(
+        child: Text('No borrow history'),
+      );
+    }
+    
     return ListView.builder(
       itemCount: controller.borrowHistory.length,
       itemBuilder: (context, index) {
         final borrow = controller.borrowHistory[index];
         return Card(
+          margin: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
           child: ListTile(
             title: Text(borrow.bookTitle),
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Borrowed: \${dateFormat.format(borrow.borrowDate)}'),
-                Text('Returned: \${dateFormat.format(borrow.returnDate!)}'),
+                Text('Borrowed: ${dateFormat.format(borrow.borrowDate)}'),
+                if (borrow.returnDate != null)
+                  Text('Returned: ${dateFormat.format(borrow.returnDate!)}'),
                 if (borrow.isLate)
                   Text(
                     'Was Late',

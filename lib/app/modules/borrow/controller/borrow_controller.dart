@@ -1,11 +1,11 @@
-import 'package:book_hive/app/constants/api_routes.dart';
+// import 'package:book_hive/app/constants/api_routes.dart';
+// import 'package:book_hive/app/data/remote/api_service.dart';
+
 import 'package:get/get.dart';
-import 'package:book_hive/app/data/remote/api_service.dart';
 import 'package:book_hive/app/modules/borrow/model/borrow_model.dart';
+import 'package:book_hive/app/data/local/static_data.dart';
 
 class BorrowController extends GetxController {
-  final ApiService api = Get.find();
-  
   final RxList<BorrowRecord> activeBorrows = <BorrowRecord>[].obs;
   final RxList<BorrowRecord> borrowHistory = <BorrowRecord>[].obs;
   final RxBool isLoading = false.obs;
@@ -19,11 +19,9 @@ class BorrowController extends GetxController {
   Future<void> fetchUserBorrows() async {
     isLoading.value = true;
     try {
-      final response = await api.get(ApiRoutes.userBorrows);
-      final List<BorrowRecord> fetchedBorrows = (response.data as List)
-          .map((borrowJson) => BorrowRecord.fromJson(borrowJson))
-          .toList();
-          
+      // Use static data instead of API call
+      final List<BorrowRecord> fetchedBorrows = StaticData.borrowRecords;
+      
       activeBorrows.assignAll(
         fetchedBorrows.where((b) => b.returnDate == null).toList()
       );
@@ -37,7 +35,11 @@ class BorrowController extends GetxController {
 
   Future<bool> borrowBook(int bookId) async {
     try {
-      await api.post(ApiRoutes.borrow, {'book_id': bookId});
+      // Simulate API call delay
+      await Future.delayed(Duration(seconds: 1));
+      
+      // In a real app, this would be an API call
+      // For now, we'll just refresh the data
       await fetchUserBorrows();
       return true;
     } catch (e) {
@@ -48,7 +50,11 @@ class BorrowController extends GetxController {
 
   Future<bool> returnBook(int borrowId) async {
     try {
-      await api.post(ApiRoutes.returnBook, {'borrow_id': borrowId});
+      // Simulate API call delay
+      await Future.delayed(Duration(seconds: 1));
+      
+      // In a real app, this would be an API call
+      // For now, we'll just refresh the data
       await fetchUserBorrows();
       return true;
     } catch (e) {

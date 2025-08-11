@@ -1,6 +1,5 @@
 import 'package:book_hive/app/bindings/app_bindings.dart';
 import 'package:book_hive/app/constants/appTheme.dart';
-import 'package:book_hive/app/data/local/local_storage_service.dart';
 import 'package:book_hive/app/routes/app_pages.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -12,10 +11,6 @@ Future<void> main() async {
       WidgetsFlutterBinding.ensureInitialized();
       
       try {
-        // Initialize LocalStorageService
-        final localStorage = LocalStorageService();
-        await Get.putAsync<LocalStorageService>(() => localStorage.init());
-        
         runApp(
           GetMaterialApp(
             title: 'BookHive',
@@ -48,7 +43,10 @@ Future<void> main() async {
                     Text('Error: ${e.toString()}'),
                     const SizedBox(height: 20),
                     ElevatedButton(
-                      onPressed: () => main(),
+                      onPressed: () {
+                        // Try to run the app again
+                        main();
+                      },
                       child: const Text('Retry'),
                     ),
                   ],

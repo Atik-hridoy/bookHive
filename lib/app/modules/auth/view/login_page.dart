@@ -136,7 +136,7 @@ class LoginPage extends StatelessWidget {
                   children: [
                     Text("Don't have an account?"),
                     TextButton(
-                      onPressed: () => Get.toNamed(Routes.register),
+                      onPressed: () => Get.offAndToNamed(Routes.register),
                       child: Text('Sign Up'),
                     ),
                   ],
@@ -152,11 +152,10 @@ class LoginPage extends StatelessWidget {
  
   Future<void> _handleLogin() async {
     if (_formKey.currentState!.validate()) {
-      _emailController.text.trim();
-      _passwordController.text.trim();
+      final email = _emailController.text.trim();
+      final password = _passwordController.text.trim();
       
-      
-      
+      await _authController.login(email, password);
     }
   }
 
